@@ -41,6 +41,4 @@ const formReducer = (state,action) => {
     }
 }
 
-const useFormReducer = () => useReducer(formReducer,formBaseState)
-
-export default useFormReducer
+export default () => useReducer(formReducer,formBaseState)
