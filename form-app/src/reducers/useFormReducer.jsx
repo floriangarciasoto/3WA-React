@@ -22,7 +22,6 @@ const formReducer = (state,action) => {
             return {
                 ...state,
                 item: '',
-                canAddItem: false,
                 list: state.list.concat([state.item])
             }
         case 'deleteItem':
