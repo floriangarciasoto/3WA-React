@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCalcContext } from "../../context/useCalcContext";
 
 const Result = () => {
-
-    const {state} = useCalcContext();
-    const [operations, setOperations] = useState(0);
+    const {state, dispatch} = useCalcContext();
 
     useEffect(() => {
-        setOperations(prev => prev + 1);
-    },[state.result])
+        if (state.result !== null && state.result !== undefined && state.result !== 0) {
+            dispatch({
+                type: 'incrementOperations'
+            });
+        }
+    }, [state.result]);
 
     return (
         <>
             <div>Résultat : {state.result}</div>
             {
-                operations === 10 && <div>Vous avez fait 10 opérations.</div>
+                state.operations === 10 && <div>Vous avez fait 10 opérations.</div>
             }
             {
                 state.error === true && <div style={{color:'red'}}>Erreur dans la saisie des nombres.</div>
             }
         </>
-    )
-}
+    );
+};
 
 export default Result;

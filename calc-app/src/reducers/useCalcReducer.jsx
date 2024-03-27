@@ -4,6 +4,7 @@ const calcBaseState = {
     inputValue1: '',
     inputValue2: '',
     result: 0,
+    operations: 0,
     error: false
 }
 
@@ -31,6 +32,12 @@ const calcReducer = (state,action) => {
             return {
                 ...state,
                 result: parseInt(state.inputValue1) * parseInt(state.inputValue2)
+            }
+        case 'incrementOperations':
+            console.log('inc');
+            return {
+                ...state,
+                operations: state.operations < 10 ? state.operations + 1 : 0
             }
         case 'setError':
             return {
