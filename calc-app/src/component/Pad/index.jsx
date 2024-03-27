@@ -1,73 +1,7 @@
 import { useCalcContext } from "../../context/useCalcContext";
 
-const Buttons = () => {
-
+const Pad = () => {
     const {state,dispatch} = useCalcContext();
-
-    const handleAdd = () => {
-        // if (state.inputValue1.search(/^[0-9]+$/) === -1 || state.inputValue2.search(/^[0-9]+$/) === -1) {
-        //     dispatch({
-        //         type: 'setError',
-        //         payload: 'Erreur dans la saisie des nombres.'
-        //     })
-        //     return;
-        // }
-        // dispatch({
-        //     type: 'addNumbers'
-        // })
-        if (state.screen === '') {
-            dispatch({
-                type: 'setError',
-                payload: 'Champ de saisie vide.'
-            });
-            return;
-        }
-        dispatch({
-            type: 'prepareAdd'
-        })
-    }
-
-    const handleMinus = () => {
-        if (state.screen === '') {
-            dispatch({
-                type: 'setError',
-                payload: 'Champ de saisie vide.'
-            });
-            return;
-        }
-        dispatch({
-            type: 'prepareSub'
-        })       
-    }
-
-    const handleMul = () => {
-        // if (state.inputValue1.search(/^[0-9]+$/) === -1 || state.inputValue2.search(/^[0-9]+$/) === -1) {
-        //     dispatch({
-        //         type: 'setError',
-        //         payload: 'Erreur dans la saisie des nombres.'
-        //     })
-        //     return;
-        // }
-        // dispatch({
-        //     type: 'mulNumbers'
-        // })
-        if (state.screen === '') {
-            dispatch({
-                type: 'setError',
-                payload: 'Champ de saisie vide.'
-            });
-            return;
-        }
-        dispatch({
-            type: 'prepareMul'
-        })
-    }
-
-    const handleReset = () => {
-        dispatch({
-            type: 'reset'
-        })
-    }
 
     const handleNum = (e) => {
         dispatch({
@@ -76,8 +10,22 @@ const Buttons = () => {
         })
     }
 
+    const handlePrepareCalc = (calcType) => {
+        if (state.screen === '') {
+            dispatch({
+                type: 'setError',
+                payload: 'Champ de saisie vide.'
+            });
+            return;
+        }
+        dispatch({
+            type: 'prepareCalc',
+            payload: calcType
+        })
+    }
+
     const handleEquals = () => {
-        if (state.operationPrepare === '') {
+        if (state.prepare.operation === '') {
             dispatch({
                 type: 'setError',
                 payload: 'Aucune opération entrée avant.'
@@ -93,6 +41,12 @@ const Buttons = () => {
         }
         dispatch({
             type: 'setResult'
+        })
+    }
+    
+    const handleReset = () => {
+        dispatch({
+            type: 'reset'
         })
     }
 
@@ -117,9 +71,10 @@ const Buttons = () => {
                 <button onClick={handleNum} num={0}>0</button>
             </div>
             <div>
-                <button onClick={handleAdd}>+</button>
-                <button onClick={handleMinus}>-</button>
-                <button onClick={handleMul}>X</button>
+                <button onClick={() => handlePrepareCalc('add')}>+</button>
+                <button onClick={() => handlePrepareCalc('sub')}>-</button>
+                <button onClick={() => handlePrepareCalc('mul')}>X</button>
+                <button onClick={() => handlePrepareCalc('div')}>/</button>
             </div>
             <div>
               <button onClick={handleEquals}>=</button>
@@ -131,4 +86,4 @@ const Buttons = () => {
     )
 }
 
-export default Buttons;
+export default Pad;
