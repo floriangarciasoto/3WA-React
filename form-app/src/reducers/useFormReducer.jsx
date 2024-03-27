@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 
 const formBaseState = {
-    item: '',
+    inputValue: '',
     canAddItem: false,
     list: []
 }
@@ -11,7 +11,7 @@ const formReducer = (state,action) => {
         case 'changeItem':
             return {
                 ...state,
-                item: action.payload
+                inputValue: action.payload
             }
         case 'changeCanAddItem':
             return {
@@ -21,13 +21,17 @@ const formReducer = (state,action) => {
         case 'addItem':
             return {
                 ...state,
-                item: '',
-                list: state.list.concat([state.item])
+                inputValue: '',
+                list: state.list.concat([{
+                    id: action.payload,
+                    name: state.inputValue,
+                    isChecked: false
+                }])
             }
         case 'deleteItem':
             return {
                 ...state,
-                list: state.list.filter((item,index) => index !== action.payload)
+                list: state.list.filter(item => item.id !== action.payload)
             }
         case 'invertList':
             const newList = [];
@@ -35,6 +39,11 @@ const formReducer = (state,action) => {
             return {
                 ...state,
                 list: newList
+            }
+        case 'toogleChecked':
+            return {
+                ...state,
+                list: state.list.map(item => item.id == action.payload ? {...item,isChecked:!item.isChecked} : item)
             }
         default:
             return state
