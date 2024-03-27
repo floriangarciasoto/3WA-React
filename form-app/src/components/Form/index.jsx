@@ -1,5 +1,6 @@
 import useFormReducer from "../../reducers/useFormReducer"
 import Item from "../Item";
+import { useEffect } from "react";
 
 const Form = () => {
 
@@ -32,6 +33,13 @@ const Form = () => {
             type: 'invertList'
         })   
     }
+
+    useEffect(() => {
+        dispatch({
+            type: 'changeCanAddItem',
+            payload: state.item.length > 0 && state.item === state.item.trim()
+        })
+    },[state.item])
 
     return (
         <>

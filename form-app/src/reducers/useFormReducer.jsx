@@ -11,8 +11,12 @@ const formReducer = (state,action) => {
         case 'changeItem':
             return {
                 ...state,
-                canAddItem: action.payload.length > 0 && action.payload === action.payload.trim(),
                 item: action.payload
+            }
+        case 'changeCanAddItem':
+            return {
+                ...state,
+                canAddItem: action.payload
             }
         case 'addItem':
             return {
