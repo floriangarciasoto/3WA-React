@@ -1,14 +1,8 @@
 import { useCalcContext } from "../../context/useCalcContext";
+import Num from "../Num";
 
 const Pad = () => {
     const {state,dispatch} = useCalcContext();
-
-    const handleNum = (e) => {
-        dispatch({
-            type: 'changeScreen',
-            payload: e.target.getAttribute('num') 
-        })
-    }
 
     const handlePrepareCalc = (calcType) => {
         if (state.screen === '') {
@@ -50,26 +44,18 @@ const Pad = () => {
         })
     }
 
+    const numPad = [
+        [7,8,9],
+        [4,5,6],
+        [1,2,3],
+        [0]
+    ]
+
     return (
         <>
-            <div>
-                <button onClick={handleNum} num={7}>7</button>
-                <button onClick={handleNum} num={8}>8</button>
-                <button onClick={handleNum} num={9}>9</button>
-            </div>
-            <div>
-                <button onClick={handleNum} num={4}>4</button>
-                <button onClick={handleNum} num={5}>5</button>
-                <button onClick={handleNum} num={6}>6</button>
-            </div>
-            <div>
-                <button onClick={handleNum} num={1}>1</button>
-                <button onClick={handleNum} num={2}>2</button>
-                <button onClick={handleNum} num={3}>3</button>
-            </div>
-            <div>
-                <button onClick={handleNum} num={0}>0</button>
-            </div>
+            {
+                numPad.map((numArray,numArrayID) => <div key={numArrayID}>{ numArray.map((n,i) => <Num key={i} n={n}/>) }</div>)
+            }
             <div>
                 <button onClick={() => handlePrepareCalc('add')}>+</button>
                 <button onClick={() => handlePrepareCalc('sub')}>-</button>
