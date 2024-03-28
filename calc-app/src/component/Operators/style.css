@@ -1,0 +1,8 @@
+.operators {
+    display: flex;
+    flex-direction: column;
+}
+
+.operators button {
+    background-color: #676767;
+}

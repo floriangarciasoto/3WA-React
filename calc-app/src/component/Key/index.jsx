@@ -1,24 +1,23 @@
 import { useCalcContext } from "../../context/useCalcContext";
 import propTypes from "prop-types";
 
-const Num = ({n}) => {
-
+const Key = ({k}) => {
     const {_,dispatch} = useCalcContext();
 
-    const handleNum = (e) => {
+    const handleKey = () => {
         dispatch({
             type: 'changeScreen',
-            payload: n 
+            payload: k
         })
     }
 
     return (
-        <button onClick={handleNum}>{n}</button>
+        <button onClick={handleKey}>{k}</button>
     )
 }
 
-Num.propTypes = {
-    n: propTypes.number
+Key.propTypes = {
+    k: propTypes.string
 }
 
-export default Num;
+export default Key;

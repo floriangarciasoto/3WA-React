@@ -1,5 +1,5 @@
 import { useCalcContext } from "../../context/useCalcContext";
-import './style.css'
+import './style.css';
 
 const Error = () => {
     const {state} = useCalcContext();
@@ -7,7 +7,7 @@ const Error = () => {
     return (
         <>
             {
-                state.error !== '' && <div>{state.error}</div>
+                state.error !== '' && <div className="error">{state.error}</div>
             }
         </>
     )

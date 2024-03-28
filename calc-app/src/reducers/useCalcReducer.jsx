@@ -76,4 +76,4 @@ const calcReducer = (state,action) => {
     }
 }
 
-export default () => useReducer(calcReducer,calcBaseState)
+export default () => useReducer(calcReducer,calcBaseState);
