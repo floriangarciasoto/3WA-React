@@ -3,13 +3,14 @@ import useCalcReducer from "../reducers/useCalcReducer";
 
 const CalcContext = createContext();
 
-export const CalcContextProvider = ({ children }) => {
+const CalcContextProvider = ({ children }) => {
   
-  const [state, dispatch] = useCalcReducer();
+    const [state, dispatch] = useCalcReducer();
 
-  return (
-    <CalcContext.Provider value={{ state, dispatch }}>{children}</CalcContext.Provider>
-  )
+    return (
+        <CalcContext.Provider value={{ state, dispatch }}>{children}</CalcContext.Provider>
+    )
 }
 
 export const useCalcContext = () => useContext(CalcContext)
+export default CalcContextProvider

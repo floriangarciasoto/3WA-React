@@ -51,6 +51,16 @@ const calcReducer = (state,action) => {
                 operations: state.operations + 1
             }
 
+        case 'resetCalc':
+            return {
+                ...state,
+                screen: '',
+                prepare: {
+                    operation: '',
+                    num: 0
+                }
+            }
+
         case 'setError':
             return {
                 ...state,

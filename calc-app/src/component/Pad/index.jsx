@@ -33,6 +33,16 @@ const Pad = () => {
             });
             return;
         }
+        if (state.prepare.operation === 'div' && parseInt(state.screen) === 0) {
+            dispatch({
+                type: 'setError',
+                payload: 'Attention: division par 0 ! Recommencez le calcul.'
+            });
+            dispatch({
+                type: 'resetCalc'
+            });
+            return;
+        }
         dispatch({
             type: 'setResult'
         })
