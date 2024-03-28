@@ -15,16 +15,15 @@ const TodoCats = () => {
     return (
         <>
             Afficher : <select onChange={handleChange} value={state.showCats}>
-                <option value={-1}>Toutes les catégories</option>
+                <option value="-1">Toutes les catégories</option>
                 {
                     state.todoCats.map((todoCat,index) => <option key={index} value={index}>{todoCat.name}</option>)
                 }
             </select>
             {
-                state.showCats === -1 && state.todoCats.map((todoCat,index) => <TodoCat key={index} catID={index}/>)
-            }
-            {
-                state.showCats ==! -1 && state.todoCats.filter((todoCat,index) => index === state.showCats).map((todoCat,index) => <TodoCat key={index} catID={index}/>)
+                state.showCats === -1
+                ? state.todoCats.map((todoCat,index) => <TodoCat key={index} catID={index}/>)
+                : state.todoCats.map((todoCat,index) => state.showCats === index ? <TodoCat key={index} catID={index}/> : '')
             }
         </>
     )

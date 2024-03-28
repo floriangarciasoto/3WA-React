@@ -4,6 +4,16 @@ import propTypes from 'prop-types';
 const Todo = ({catID,todoID,todo}) => {
     const {dispatch} = useTodoContext();
 
+    const handleDoneChange = (e) => {
+        dispatch({
+            type: 'toggleTodoCheck',
+            payload: {
+                catID,
+                todoID
+            }
+        })
+    }
+
     const handleDelete = () => {
         dispatch({
             type: 'deleteTodo',
@@ -15,11 +25,12 @@ const Todo = ({catID,todoID,todo}) => {
     }
 
     return (
-        <div>
-            <h3>{todo.name}</h3>
+        <fieldset>
+            <legend>{todo.name}</legend>
+            <label><input type="checkbox" checked={todo.done} onChange={handleDoneChange}/> Fait</label>
             <p>{todo.description}</p>
             <div><button onClick={handleDelete}>Supprimer le todo</button></div>
-        </div>
+        </fieldset>
     )
 }
 

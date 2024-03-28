@@ -2,11 +2,13 @@ import { useReducer } from "react";
 
 const todoBaseState = {
     formCatName: '',
-    formTodoCat: '-1',
+    formTodoCat: -1,
     formTodoName: '',
     formTodoDescription: '',
     todoCats : [],
-    showCats: -1
+    showCats: -1,
+    errorInFormCat: '',
+    errorInFormTodo: ''
 }
 
 const todoReducer = (state,action) => {
@@ -15,7 +17,14 @@ const todoReducer = (state,action) => {
         case 'updateFormCatName':
             return {
                 ...state,
-                formCatName: action.payload
+                formCatName: action.payload,
+                errorInFormCat: ''
+            }
+
+        case 'setErrorInFormCat':
+            return {
+                ...state,
+                errorInFormCat: action.payload
             }
 
         case 'addCat':
@@ -34,40 +43,55 @@ const todoReducer = (state,action) => {
         case 'updateFormTodoCat':
             return {
                 ...state,
-                formTodoCat: action.payload
+                formTodoCat: parseFloat(action.payload),
+                errorInFormTodo: ''
             }
 
         case 'updateFormTodoName':
             return {
                 ...state,
-                formTodoName: action.payload
+                formTodoName: action.payload,
+                errorInFormTodo: ''
             }
 
         case 'updateFormTodoDescription':
             return {
                 ...state,
-                formTodoDescription: action.payload
+                formTodoDescription: action.payload,
+                errorInFormTodo: ''
             }
-
+        
         case 'addTodo':
             return {
                 ...state,
-                formTodoCat: '-1',
+                formTodoCat: -1,
                 formTodoName: '',
                 formTodoDescription: '',
-                todoCats: state.todoCats.map((todoCat,index) => index == state.formTodoCat ? {name: todoCat.name, todos: todoCat.todos.concat([{name: state.formTodoName, description: state.formTodoDescription}])} : todoCat)
+                todoCats: state.todoCats.map((todoCat,index) => index === state.formTodoCat ? {name: todoCat.name, todos: todoCat.todos.concat([{name: state.formTodoName, description: state.formTodoDescription, done: false}])} : todoCat)
             }
 
+        case 'toggleTodoCheck':
+            return {
+                ...state,
+                todoCats: state.todoCats.map((todoCat,index) => index === action.payload.catID ? {name: todoCat.name, todos: todoCat.todos.map((todo,index) => index === action.payload.todoID ? {name: todo.name, description: todo.description, done: !todo.done} : todo )} : todoCat)
+            }
+    
         case 'deleteTodo':
             return {
                 ...state,
-                todoCats: state.todoCats.map((todoCat,index) => index == action.payload.catID ? {name: todoCat.name, todos: todoCat.todos.filter((todo,index) => index !== action.payload.todoID)} : todoCat)
+                todoCats: state.todoCats.map((todoCat,index) => index === action.payload.catID ? {name: todoCat.name, todos: todoCat.todos.filter((todo,index) => index !== action.payload.todoID)} : todoCat)
             }
         
         case 'uptadeCatFilter':
             return {
                 ...state,
                 showCats: parseInt(action.payload)
+            }
+        
+        case 'setErrorInFormTodo':
+            return {
+                ...state,
+                errorInFormTodo: action.payload
             }
     
         default:

@@ -1,4 +1,5 @@
 import { useTodoContext } from '../../context/useTodoContext'
+import Error from '../Error';
 
 const FormTodo = () => {
 
@@ -27,6 +28,20 @@ const FormTodo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (state.formTodoCat === -1) {
+            dispatch({
+                type: 'setErrorInFormTodo',
+                payload: 'Il faut choisir une catégorie.'
+            });
+            return;
+        }
+        if (state.formTodoName === '') {
+            dispatch({
+                type: 'setErrorInFormTodo',
+                payload: 'Nom du todo vide.'
+            });
+            return;
+        }
         dispatch({
             type: 'addTodo'
         })
@@ -46,6 +61,9 @@ const FormTodo = () => {
                     <input type="text" placeholder="Nom ..." onChange={handleNameChange} value={state.formTodoName}/>
                     <textarea cols="30" rows="10" placeholder="Description ... (optionel)" onChange={handleDescriptionChange} value={state.formTodoDescription}/>
                     <input type="submit" value="Ajouter" />
+                    {
+                        state.errorInFormTodo !== '' && <Error message={state.errorInFormTodo} />
+                    }
                 </fieldset>
             </form>
         </>
