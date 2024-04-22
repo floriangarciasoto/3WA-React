@@ -9,7 +9,12 @@ const Results = () => {
             {
                 state.done ? 
                     <>
-                        <div>Nombre de brelan de 6 : {state.brelans6} ({state.brelans6 / state.rolls * 100} %)</div>
+                        <div>Nombre de brelans </div>
+                        <ul>
+                            {
+                                state.brelans.map((brelansNb,index) => <li key={index}>De {index+1} : {brelansNb} ({brelansNb / state.rolls * 100} %)</li>)
+                            }
+                        </ul>
                         <div>Liste des lancers :</div>
                         <ul>
                             {

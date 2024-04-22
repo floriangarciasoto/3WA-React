@@ -5,10 +5,10 @@ function getRandomInt(min,max) {
 }
 
 const diceBaseState = {
-    rolls: 100,
+    rolls: 1000,
     done: false,
     result: [],
-    brelans6: 0
+    brelans: [0, 0, 0, 0, 0, 0]
 }
 
 const diceReducer = (state,action) => {
@@ -21,14 +21,14 @@ const diceReducer = (state,action) => {
             }
         
         case 'roll':
-            const res = [];
-            for (var i = 0; i < state.rolls; i++) res.push([getRandomInt(1,6),getRandomInt(1,6),getRandomInt(1,6)]);
-            const brelans6 = res.filter(roll => roll.join('') === '666').length;// x)
+            const result = [];
+            for (var i = 0; i < state.rolls; i++) result.push([getRandomInt(1,6),getRandomInt(1,6),getRandomInt(1,6)]);
+            const brelans = state.brelans.map((brelansNb,index) => result.filter(roll => roll.join('') === (''+(index+1)).repeat(3)).length);
             return {
                 ...state,
                 done: true,
-                brelans6,
-                result: res
+                brelans,
+                result
             }
 
         default:
