@@ -1,4 +1,4 @@
-import {POST_ADD_POST, POST_SET_VALUE} from "../action-type/index.js";
+import {DRAGON_ADD_DRAGON, DRAGON_SET_VALUE} from "../action-type/index.js";
 
 const initialState = {
     dragon: {
@@ -12,10 +12,10 @@ const initialState = {
     }]
 };
 
-const postReducer = (state = initialState, action) => {
+const dragonReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case POST_SET_VALUE:
+        case DRAGON_SET_VALUE:
             return {
                 ...state,
                 dragon: {
@@ -24,7 +24,7 @@ const postReducer = (state = initialState, action) => {
                 }
             }
 
-        case POST_ADD_POST:
+        case DRAGON_ADD_DRAGON:
             return {
                 ...state,
                 dragons: state.dragons.concat([{...state.dragon, id: Date.now()}]),
@@ -39,4 +39,4 @@ const postReducer = (state = initialState, action) => {
     }
 };
 
-export default postReducer
+export default dragonReducer

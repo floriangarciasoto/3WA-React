@@ -1,7 +1,6 @@
 import './App.css'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import Home from './page/Home'
-import List from './page/List'
 import Detail from './page/Detail'
 import Create from './page/Create'
 import { useSelector } from 'react-redux'
@@ -28,7 +27,6 @@ function App() {
       <div>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/list' element={<List/>}/>
           <Route path='/list/:dragonID' element={<Detail/>}/>
           <Route path='/create' element={<Create/>}/>
 

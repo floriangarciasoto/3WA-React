@@ -1,3 +1,5 @@
-export const selectDragon = state => state.dragon
+export const selectDragon = state => state.dragon.dragon
+export const selectDragons = state => state.dragon.dragons
 
-export const selectDragons = state => state.dragons
+export const selectKnight = state => state.knigth.knigth
+export const selectKnights = state => state.knight.knights
