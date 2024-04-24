@@ -13,7 +13,7 @@ function App() {
         <Route element={<MainTemplate />}>
          <Route path={'/'} element={ <Home /> } />
          <Route path={'/create'} element={ <Create /> } />
-         <Route path='/detail/:todoID' element={<Detail/>}/>
+         <Route path={'/detail/:todoID'} element={<Detail/>}/>
 
          <Route path={'*'} element={<div>404 Not found.</div> } />
         </Route>
