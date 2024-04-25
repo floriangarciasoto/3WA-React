@@ -29,8 +29,12 @@ const todoSlice = createSlice({
         setTodoValue(state, action) {
             state.todo[action.payload.name] = action.payload.value;
         },
-        setTodoCompleted(state, action) {
-            state.todo.completed = action.payload
+        toggleTodoCompleted(state, action) {
+          state.todos.forEach(todo => {
+            if (todo.id === action.payload) {
+              todo.completed = !todo.completed
+            }
+          })
         }
     },
     initialState: {
@@ -89,7 +93,7 @@ const todoSlice = createSlice({
 
 export const {
     setTodoValue,
-    setTodoCompleted
+    toggleTodoCompleted
 } = todoSlice.actions
 
 export default todoSlice.reducer

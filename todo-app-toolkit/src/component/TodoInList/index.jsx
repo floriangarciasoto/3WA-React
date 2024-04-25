@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
+import { toggleTodoCompleted } from "../../store/slice/todoSlice";
+import { useDispatch } from "react-redux";
 
 const TodoInList = ({ todo }) => {
-    const handleCheck = (e) => {
-        const { checked } = e.target;
-        // dispatch(setTodoCompleted(checked));
+    const dispatch = useDispatch()
+
+    const handleCheck = () => {
+        dispatch(toggleTodoCompleted(todo.id));
     }
 
     return (
