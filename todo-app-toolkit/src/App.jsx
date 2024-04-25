@@ -4,8 +4,16 @@ import MainTemplate from './component/template/MainTemplate'
 import Home from './page/Home'
 import Create from './page/Create'
 import Detail from './page/Detail'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchTodo } from './store/slice/todoSlice'
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodo())
+  }, []);
 
   return (
     <>

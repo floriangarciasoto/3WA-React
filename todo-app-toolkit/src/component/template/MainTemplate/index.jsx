@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import NavBar from "../../NavBar/index.jsx";
-import Logs from "../../Logs/index.jsx";
+import LogsList from "../../LogsList/index.jsx";
 
 const MainTemplate = () => {
 
@@ -8,7 +8,7 @@ const MainTemplate = () => {
         <main>
             <NavBar />
             <Outlet />
-            <Logs />
+            <LogsList />
         </main>
     )
 }

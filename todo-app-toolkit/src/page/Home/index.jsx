@@ -1,27 +1,30 @@
 import { useSelector } from "react-redux"
-import { selectTodos } from "../../store/selector"
-import { Link } from "react-router-dom";
-// import { setTodoIsDone } from "../../store/slice/todoSlice";
+import { selectLoadingState, selectTodos } from "../../store/selector"
+import TodoInList from "../../component/TodoInList";
 
 const Home = () => {
-
   const todos = useSelector(selectTodos);
-  // const dispatch = useDispatch()
-
-  // const handleIsCheckedChange = (e) => {
-  //   const { checked } = e.target;
-  //   dispatch(setTodoIsDone(checked));
-  // }
-
+  const { getTodosFromAPIState } = useSelector(selectLoadingState);
 
   return (
     <>
       <h3>Liste des tâches :</h3>
-      <ul>
-        {
-          todos.map((todo, index) => <li key={index}><Link to={'/detail/' + todo.id}>{todo.name}</Link></li>)
-        }
-      </ul>
+      {
+        getTodosFromAPIState === 'loading' ?
+          <div>Chargement ...</div>
+          :
+          getTodosFromAPIState === 'error' ?
+            <div>Erreur, essaies encore :)</div>
+            :
+            todos.length > 0 ?
+              <ul style={{ textAlign: 'left' }}>
+                {
+                  todos.map((todo, index) => <TodoInList key={index} todo={todo} />)
+                }
+              </ul>
+              :
+              <span>Vous n'avez rien à faire ici !</span>
+      }
     </>
   )
 }

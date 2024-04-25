@@ -12,9 +12,9 @@ const Detail = () => {
         <>
             <h3>Détail de la tâche</h3>
             <div>ID : {todo.id} </div>
-            <div>Nom : {todo.name} </div>
-            <div>Descrption : {todo.description} </div>
-            <div>Fait : <input type="checkbox" checked={todo.isDone} disabled/></div>
+            <div>Nom : {todo.title} </div>
+            <div>Descrption : {todo.content} </div>
+            <div>Fait : <input type="checkbox" checked={todo.completed} disabled/></div>
         </>
     )
 }

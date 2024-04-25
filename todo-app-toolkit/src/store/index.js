@@ -3,7 +3,6 @@ import todoSlice from './slice/todoSlice'
 import logSlice, { logAction } from './slice/logSlice';
 
 const middleware = (store) => (next) => (action) => {
-    console.log(action);
     if (action.type !== logAction.toString()) {
         store.dispatch(logAction(action));
     }
@@ -15,7 +14,9 @@ const store = configureStore({
         todo: todoSlice,
         log: logSlice
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+      }).concat([
       middleware
     ])
 })
