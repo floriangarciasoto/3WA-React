@@ -5,7 +5,15 @@
   text-align: center;
 }
 
+.borderNav {
+  border: 2px solid rgb(0, 42, 84);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(40, 43, 45);
 
+}
 
 @keyframes logo-spin {
   from {

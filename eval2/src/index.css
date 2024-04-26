@@ -22,6 +22,10 @@ body {
   min-height: 100vh;
 }
 
+li {
+  list-style: none;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -53,11 +57,11 @@ button:focus-visible {
   border: 2px solid rgb(0, 87, 109);
   padding: 1rem;
   border-radius: 0.5rem;
-  display: flex;
   justify-content: center;
   background-color: white;
   color: rgb(0, 87, 109);
-
+  display: inline;
+  text-decoration: none;
 }
 
 .active {
@@ -65,27 +69,20 @@ button:focus-visible {
   color: white;
 }
 
-ul {
+.logs {
+  background-color: black;
+  padding: 0 0.5rem;
   list-style: none;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  text-decoration: none;
+  color: rgb(0, 163, 0);
 }
 
-li {
-  color: #094658;
+.postlist ul {
+  border: 0.5px solid rgb(0, 87, 109);
 }
 
-a:hover {
-  color: white;
-}
-
-a {
-  color: rgb(0, 75, 94);
-}
 
 /* Style de base pour le textarea */
-textarea {
+.logs textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -93,51 +90,69 @@ textarea {
   font-size: 16px;
   line-height: 1.5;
   transition: border-color 0.3s ease;
+  background-color: black;
+  color: rgb(31, 116, 40);
 }
 
-/* Effet de survol */
-textarea:hover {
-  border-color: #aaa;
+/* Style de base pour les listes */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Effet de focus */
-textarea:focus {
-  outline: none;
-  border-color: #66afe9;
-  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+/* Style des commentaires */
+.comment {
+  background-color: rgb(0, 87, 109);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour le texte à l'intérieur du textarea */
-textarea::placeholder {
-  color: #999;
+.comment .author {
+  font-weight: bold;
+  color: #333;
 }
 
-/* Style pour les barres de défilement */
-textarea::-webkit-scrollbar {
-  width: 10px;
+.comment .timestamp {
+  font-size: 0.8em;
+  color: #888;
 }
 
-textarea::-webkit-scrollbar-thumb {
-  background-color: #888;
+.comment .content {
+  margin-top: 10px;
+  color: #555;
+}
+
+.comment .actions {
+  margin-top: 10px;
+}
+
+.comment .actions button {
+  background-color: #00ff99;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
   border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
 }
 
-textarea::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
+.comment .actions button:hover {
+  background-color: #0056b3;
 }
 
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(0, 87, 109);
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.3s ease;
+  background-color: black;
+  color: rgb(123, 128, 124);
 }

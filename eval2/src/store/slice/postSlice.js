@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchPosts = createAsyncThunk(
-    'fetchPosts',
+export const fetchPostsAndUsers = createAsyncThunk(
+    'fetchPostsAndUsers',
     async () => {
-        const res = await axios.get('https://jsonplaceholder.typicode.com/posts?userId=1')
-        return res.data;
+        const resPosts = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        const resUsers = await axios.get('https://jsonplaceholder.typicode.com/users')
+        return [resPosts.data, resUsers.data];
     }
 )
 
@@ -34,11 +35,12 @@ export const addPostToAPI = createAsyncThunk(
 export const addCommentToPost = createAsyncThunk(
     'addCommentToPost',
     async (postId, { getState }) => {
-        const state = getState()
+        const state = getState();
+        const userWithId1 = state.post.users.find(user => user.id === 1);
         const newComment = {
             postId,
             name: state.post.comment.name,
-            email: 'adresse@mail.fr',
+            email: userWithId1.email, // Use of with Id = 1
             body: state.post.comment.body
         }
         const res = await axios.post(`https://jsonplaceholder.typicode.com/comments`, newComment);
@@ -63,6 +65,7 @@ const postSlice = createSlice({
             body: ''
         },
         posts: [],
+        users: [],
         comment: {
             name: '',
             body: ''
@@ -77,15 +80,16 @@ const postSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // Get posts
-        builder.addCase(fetchPosts.pending, (state, action) => {
+        // Get posts and users
+        builder.addCase(fetchPostsAndUsers.pending, (state, action) => {
             state.loading.getPostsFromAPIState = 'loading'
         })
-        builder.addCase(fetchPosts.fulfilled, (state, action) => {
-            state.posts = action.payload
+        builder.addCase(fetchPostsAndUsers.fulfilled, (state, action) => {
+            state.posts = action.payload[0];
+            state.users = action.payload[1];
             state.loading.getPostsFromAPIState = 'idle'
         })
-        builder.addCase(fetchPosts.rejected, (state, action) => {
+        builder.addCase(fetchPostsAndUsers.rejected, (state, action) => {
             state.loading.getPostsFromAPIState = "error"
         })
 

@@ -25,7 +25,7 @@ const Comments = ({ postId }) => {
                         comments.length > 0 ?
                             <ul style={{ textAlign: 'left' }}>
                                 {
-                                    comments.map((comment, index) => <Comment key={index} comment={comment} />)
+                                    comments.toReversed().map((comment, index) => <Comment key={index} comment={comment} />)
                                 }
                             </ul>
                             :

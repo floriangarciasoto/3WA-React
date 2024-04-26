@@ -15,7 +15,7 @@ const LogsList = () => {
             <h4>Logs :</h4>
             <ul style={{ maxHeight: '10em', overflow: 'scroll', textAlign: 'left', whiteSpace: 'nowrap' }}>
                 {
-                    logs.toReversed().map((log, index) => <li key={index}>{log.date}, {log.name}, {JSON.stringify(log.payload)}</li>)
+                    logs.toReversed().map((log, index) => <li className="logs" key={index}>{log.date}, {log.name}, {JSON.stringify(log.payload)}</li>)
                 }
             </ul>
             <button onClick={handleClick}>RESET</button>

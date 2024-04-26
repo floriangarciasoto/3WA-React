@@ -6,13 +6,13 @@ import Add from './page/Add'
 import Detail from './page/Detail'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchPosts } from './store/slice/postSlice'
+import { fetchPostsAndUsers } from './store/slice/postSlice'
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts())
+    dispatch(fetchPostsAndUsers())
   }, []);
 
   return (

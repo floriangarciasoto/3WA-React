@@ -20,26 +20,28 @@ const AddComment = ({ postId }) => {
     }
 
     return (
-        <form onSubmit={handleCommentSubmit}>
-            <input type="text" name="name" value={comment.name} onChange={handleCommentChange} placeholder='Nom du commentaire ...' />
-            <textarea
-                value={comment.body}
-                name="body"
-                onChange={handleCommentChange}
-                placeholder="Ajouter un commentaire..."
-                rows="4"
-                cols="170"
-            />
-            <br />
-            <button type="submit">Ajouter</button>
-            {
-                addCommentToAPIState === 'loading' ?
-                    <div>Envoi ...</div>
-                    :
-                    addCommentToAPIState === 'error' &&
-                    <div>Erreur, essaies encore d'envoyer :)</div>
-            }
-        </form>
+        <div className='comments'>
+            <form onSubmit={handleCommentSubmit}>
+                <input type="text" name="name" value={comment.name} onChange={handleCommentChange} placeholder='Nom du commentaire ...' />
+                <textarea
+                    value={comment.body}
+                    name="body"
+                    onChange={handleCommentChange}
+                    placeholder="Ajouter un commentaire..."
+                    rows="4"
+                    cols="170"
+                />
+                <br />
+                <button type="submit">Ajouter</button>
+                {
+                    addCommentToAPIState === 'loading' ?
+                        <div>Envoi ...</div>
+                        :
+                        addCommentToAPIState === 'error' &&
+                        <div>Erreur, essaies encore d'envoyer :)</div>
+                }
+            </form>
+        </div>
     )
 }
 
