@@ -24,7 +24,7 @@ const Add = () => {
         <fieldset>
           <legend>Création d'un post</legend>
           <input type="text" name="title" placeholder="Nom ..." value={title} onChange={handleChange} /><br />
-          <textarea name="body" placeholder="Body ..." cols="30" rows="10" value={body} onChange={handleChange} /><br />
+          <textarea name="body" placeholder="Contenu ..." cols="30" rows="10" value={body} onChange={handleChange} /><br />
           <button type="submit">OK</button>
         </fieldset>
       </form>

@@ -7,11 +7,15 @@ const PostInList = ({ post }) => {
     const users = useSelector(selectUsers);
 
     return (
-        <div className="postlist">
-            <li>
-                <Link to={'/detail/' + post.id}>{post.title} - {users.find(user => user.id === post.userId).name}</Link>
-            </li>
-        </div>
+
+        <Link to={'/detail/' + post.id}>
+            <div className="postlist">
+
+                <div className="postlist-h1">{post.title}</div>
+                <div>{users.find(user => user.id === post.userId).name}</div>
+
+            </div>
+        </Link>
     )
 }
 

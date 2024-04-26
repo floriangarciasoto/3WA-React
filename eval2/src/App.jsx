@@ -7,6 +7,7 @@ import Detail from './page/Detail'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchPostsAndUsers } from './store/slice/postSlice'
+import NotFound from './page/NotFound'
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function App() {
           <Route path={'/add'} element={<Add />} />
           <Route path={'/detail/:postId'} element={<Detail />} />
 
-          <Route path={'*'} element={<div>404 Not found.</div>} />
+          <Route path={'*'} element={<NotFound />} />
         </Route>
 
       </Routes>

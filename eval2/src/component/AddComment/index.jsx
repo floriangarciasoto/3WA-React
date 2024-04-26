@@ -22,17 +22,20 @@ const AddComment = ({ postId }) => {
     return (
         <div className='comments'>
             <form onSubmit={handleCommentSubmit}>
-                <input type="text" name="name" value={comment.name} onChange={handleCommentChange} placeholder='Nom du commentaire ...' />
-                <textarea
-                    value={comment.body}
-                    name="body"
-                    onChange={handleCommentChange}
-                    placeholder="Ajouter un commentaire..."
-                    rows="4"
-                    cols="170"
-                />
-                <br />
-                <button type="submit">Ajouter</button>
+                <fieldset>
+                    <legend>Ajouter un commentaire</legend>
+                    <input type="text" name="name" value={comment.name} onChange={handleCommentChange} placeholder='Nom ...' />
+                    <textarea
+                        value={comment.body}
+                        name="body"
+                        onChange={handleCommentChange}
+                        placeholder="Contenu ..."
+                        rows="4"
+                    />
+                    <br />
+                    <button type="submit">Ajouter</button>
+
+                </fieldset>
                 {
                     addCommentToAPIState === 'loading' ?
                         <div>Envoi ...</div>

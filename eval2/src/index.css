@@ -15,6 +15,10 @@
 
 
 body {
+  background: url('https://images.unsplash.com/photo-1524334228333-0f6db392f8a1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   margin: 0;
   display: flex;
   place-items: center;
@@ -22,8 +26,10 @@ body {
   min-height: 100vh;
 }
 
-li {
+li,
+a {
   list-style: none;
+  text-decoration: none;
 }
 
 h1 {
@@ -38,7 +44,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: rgb(0, 75, 94);
+  background-color: rgb(57, 88, 96);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -53,19 +59,37 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+nav {
+  background-color: rgb(0, 9, 14);
+  width: 100%;
+  height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 2.5rem;
+}
+
+.under-nav {
+  height: 100px;
+}
+
 .borderNav {
-  border: 2px solid rgb(0, 87, 109);
+  z-index: 1;
+  top: 0;
+
+  border: 2px solid rgb(0, 51, 63);
   padding: 1rem;
   border-radius: 0.5rem;
   justify-content: center;
-  background-color: white;
-  color: rgb(0, 87, 109);
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   display: inline;
   text-decoration: none;
 }
 
 .active {
-  background-color: rgb(0, 87, 109);
+  background-color: rgb(0, 51, 63);
   color: white;
 }
 
@@ -77,13 +101,12 @@ button:focus-visible {
 }
 
 .postlist ul {
-  border: 0.5px solid rgb(0, 87, 109);
+  border: 0.5px solid rgb(0, 51, 63);
 }
 
 
-/* Style de base pour le textarea */
-.logs textarea {
-  width: 100%;
+textarea {
+  width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -91,23 +114,27 @@ button:focus-visible {
   line-height: 1.5;
   transition: border-color 0.3s ease;
   background-color: black;
-  color: rgb(31, 116, 40);
 }
 
-/* Style de base pour les listes */
+.logs textarea {
+  color: rgb(31, 116, 40);
+
+}
+
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-/* Style des commentaires */
+
 .comment {
-  background-color: rgb(0, 87, 109);
+  margin-top: 1.25rem;
+  background-color: rgb(58, 60, 60);
   border-radius: 8px;
   margin-bottom: 15px;
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 10, 10);
 }
 
 .comment .author {
@@ -141,18 +168,86 @@ ul {
 }
 
 .comment .actions button:hover {
-  background-color: #0056b3;
+  background-color: rgb(0, 51, 63);
+}
+
+/* Style de base pour l'input */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  width: 90%;
+
+  padding: 10px;
+
+  font-size: 16px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+
+  outline: none;
+
+  transition: border-color 0.3s ease;
+
 }
 
 
-textarea {
-  width: 100%;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="url"]: textarea {
+  width: 90%;
   padding: 10px;
-  border: 1px solid rgb(0, 87, 109);
+  border: 1px solid rgb(0, 51, 63);
   border-radius: 5px;
   font-size: 16px;
   line-height: 1.5;
   transition: border-color 0.3s ease;
   background-color: black;
   color: rgb(123, 128, 124);
+}
+
+.postlist,
+fieldset {
+  margin-top: 1.25rem;
+  background-color: rgb(58, 60, 60);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 10, 10);
+  text-align: center;
+}
+
+.postlist div {
+  color: white;
+  text-decoration: none;
+}
+
+.postlist-h1 {
+  font-size: 1.25em;
+  font-weight: 900;
+  color: rgb(0, 51, 63);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  color: rgb(0, 51, 63);
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.detailpost {
+  border: 2px solid rgb(35, 192, 216);
+  background-color: #333;
+  padding: 2rem;
+  margin-top: 3rem;
 }

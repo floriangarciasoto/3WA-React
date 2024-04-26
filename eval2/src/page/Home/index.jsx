@@ -19,7 +19,7 @@ const Home = () => {
             posts.length > 0 ?
               <ul style={{ textAlign: 'left' }}>
                 {
-                  posts.map((post, index) => <PostInList key={index} post={post} />)
+                  posts.toReversed().map((post, index) => <PostInList key={index} post={post} />)
                 }
               </ul>
               :
